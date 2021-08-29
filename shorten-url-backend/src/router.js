@@ -5,6 +5,6 @@ const router = Router();
 
 router.post('/', controller.post_url);
 
-router.get('/:code', controller.get_shorten_url);
+router.get('/:code', controller.get_url);
 
 module.exports = router;
