@@ -2,19 +2,34 @@
 
 ### Installation & setup
 
-Run `npm install` to install dependancies.
+Install dependancies:
+```
+npm install
+```
 
-### Setup MongoDb
+#### Setup MongoDb
 
-#### Install MongoDB, if not installed yet
+##### Install MongoDB, if not installed yet
 https://docs.mongodb.com/manual/administration/install-community/  
 (Do not forget to run MongoDB bevore running the app)
+
+Start MongoDB on macOS:
+```
+brew services start mongodb-community@5.0
+```
+
+Stop MongoDB on macOS:
+```
+brew services stop mongodb-community@5.0
+```
+
 
 ### Available Scripts
 
 In the project directory, you can run:
-
-#### `npm start`
+```
+npm start
+```
 
 Runs the app in the development mode.
 Open [http://localhost:3030](http://localhost:3030) to view it in the browser.
