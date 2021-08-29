@@ -15,7 +15,6 @@ exports.postUrl = function (url, serverUrl) {
     shortenUrl = serverUrl + '/' + code;
     code++;
 
-    console.log(url)
     // Add newly shorten url to urlDataset
     urlDataset[shortenUrl] = url;
 
@@ -24,8 +23,6 @@ exports.postUrl = function (url, serverUrl) {
 };
 
 exports.getUrlOfShortenUrl = function (code, serverUrl) {
-    console.log(urlDataset);
-
     const shortenUrl = serverUrl + '/' + code;
 
     // If shorten url is not in urlDataset return null
