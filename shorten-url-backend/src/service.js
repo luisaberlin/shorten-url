@@ -22,7 +22,7 @@ exports.getUrlOfShortenUrl = function (code, serverUrl) {
     const shortenUrl = serverUrl + '/' + code;
 
     // If shorten url is not in urlDataset return null
-    if (!urlDataset[shortenUrl]) return null;
+    if (!urlDataset[shortenUrl]) return undefined;
 
     // If shorten url is in urlDataset return long url
     return urlDataset[shortenUrl];

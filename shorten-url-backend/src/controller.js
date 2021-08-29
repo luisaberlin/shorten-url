@@ -12,5 +12,6 @@ exports.get_url = (req, res) => {
     const code = req.params.code;
     const serverUrl = req.get('Host');
     const url = service.getUrlOfShortenUrl(code, serverUrl);
-    res.status(200).send(url);
+    if(url) res.status(200).send(url);
+    res.status(404).send(`Not found: urlDatabase does not contain ${serverUrl + '/' + code}.`)
 }
