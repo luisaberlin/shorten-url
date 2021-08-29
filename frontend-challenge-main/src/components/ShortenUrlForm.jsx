@@ -1,31 +1,44 @@
 /* eslint no-unused-vars: 1 */
 
 import React, { useCallback, useState } from 'react';
+import axios from 'axios'
 
 const ShortenUrlForm = () => {
     const [value, setValue] = useState('');
     const [url, setUrl] = useState('');
+    const [copiedText, setCopiedText] = useState('');
 
     const onChange = useCallback(
         (e) => {
-            // TODO: Set the component's new state based on the user's input ✅
+            // Set the component's new state based on the user's input
             setValue(e.target.value);
+
+            // Remove shorten url below input fields
+            setUrl('');
+            // Remove information -> url copied
+            setCopiedText('')
         },
-        [
-            /* TODO: Add necessary deps */
-        ],
+        [],
     );
 
     const onSubmit = useCallback(
         (e) => {
             e.preventDefault();
-            // TODO: shorten url and copy to clipboard
-            const result = "Kopiert! :)"
-            setUrl(result);
-            navigator.clipboard.writeText(result)
+            // Send shorten url request
+            axios.post('http://localhost:3030/', {"url" : value}).then(result => {
+                const shortenUrl = result.data;
+                // Show shorten url below input fields
+                setUrl(shortenUrl);
+                // Copy to clipboard and inform user
+                navigator.clipboard.writeText(shortenUrl);   
+                setCopiedText('Copied!');         
+            }).catch(err => {
+                // Show error message below input fields
+                setUrl(err.response.data);
+            });
         },
         [
-            /* TODO: necessary deps */
+            value
         ],
     );
 
@@ -42,8 +55,8 @@ const ShortenUrlForm = () => {
                 />
             </label>
             <input type="submit" value="Shorten and copy URL" />
-            {/* TODO: show below only when the url has been shortened and copied */ url }
-            <div>{/* Show shortened url --- copied! */}</div>
+            {/* TODO: show below only when the url has been shortened and copied */ copiedText} 
+            <div>{/* Show shortened url --- copied! */ url }</div>
         </form>
     );
 };

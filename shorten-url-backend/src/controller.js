@@ -8,7 +8,7 @@ exports.post_url = (req, res) => {
     if(shortenUrl) {
         res.status(200).send(shortenUrl);
     } else {
-        res.status(400).send(`Bad request: url (${serverUrl}) is undefined or not valid.`)
+        res.status(400).send(`Bad request: url is undefined or not valid.`)
     }
 }
 
