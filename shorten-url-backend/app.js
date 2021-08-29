@@ -2,6 +2,7 @@
 
 // Node module imports
 const express = require('express');
+const mongoose = require('mongoose');
 //const morgan = require('morgan');
 
 // Own modules imports 
@@ -9,7 +10,19 @@ const router = require('./src/router');
 
 const app = express();
 const port = 3030;
+const dbUrl = 'mongodb://localhost/shortenurl';
 
+/* DB SET UP */
+//Set up default mongoose connection
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true});
+//Get the default connection
+const db = mongoose.connection;
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+//Bind connection to open event (to get notification when connection started)
+db.once('open', function() {
+    console.log('MongoDB connected.');
+});
 
 /* SERVER SET UP */
 
@@ -46,4 +59,4 @@ app.use('/', router);
 //});
 
 // Start Server
-app.listen(port, () => console.log('Server listening on port 3000.'));
+app.listen(port, () => console.log(`Server listening on port ${port}.`));
