@@ -4,6 +4,12 @@
 
 Run `npm install` to install dependancies.
 
+### Setup MongoDb
+
+#### Install MongoDB, if not installed yet
+https://docs.mongodb.com/manual/administration/install-community/  
+(Do not forget to run MongoDB bevore running the app)
+
 ### Available Scripts
 
 In the project directory, you can run:
@@ -20,3 +26,5 @@ Open [http://localhost:3030](http://localhost:3030) to view it in the browser.
 |--------|--------|-----------------------------------|
 | POST   | /      | Returns shortened url             |
 | GET    | /:code | Redirects to url of shortened url |
+| GET    | / | Returns all urls (for testing) |
+| DELETE    | / | Removes all urls from db (for testing) |

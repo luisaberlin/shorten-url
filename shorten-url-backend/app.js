@@ -1,16 +1,29 @@
 'use strict';
 const express = require('express');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
 
 const router = require('./src/router');
 
 const app = express();
 const port = 3030;
+const dbUrl = 'mongodb://localhost/shortenurl';
 
-// Logger for all requests (set up as early as possible to notice everything)
+/* DB SET UP */
+//Set up default mongoose connection
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true});
+//Get the default connection
+const db = mongoose.connection;
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+//Bind connection to open event (to get notification when connection started)
+db.once('open', () => console.log('MongoDB connected.'));
+    
+/* SERVER SET UP */
+// Logger for all requests
 app.use(morgan('dev'));
 
-// Middleware to parse the request body and place the result in request.body
+// Parse the request body and place the result in request.body
 app.use(express.json());
 
 // Allow CORS
