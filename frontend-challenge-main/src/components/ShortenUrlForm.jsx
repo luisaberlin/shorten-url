@@ -31,7 +31,7 @@ const ShortenUrlForm = () => {
                 setUrl(shortenUrl);
                 // Copy to clipboard and inform user
                 navigator.clipboard.writeText(shortenUrl);   
-                setCopiedText('Copied!');         
+                setCopiedText('Copied: ');         
             }).catch(err => {
                 // Show error message below input fields
                 setUrl(err.response.data);
@@ -55,8 +55,7 @@ const ShortenUrlForm = () => {
                 />
             </label>
             <input type="submit" value="Shorten and copy URL" />
-            {/* TODO: show below only when the url has been shortened and copied */ copiedText} 
-            <div>{/* Show shortened url --- copied! */ url }</div>
+            <div>{copiedText}{url}</div>
         </form>
     );
 };
