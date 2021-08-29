@@ -20,6 +20,11 @@ app.use(function(req, res, next) {
     next();
 });
 
+// Handle browser request for favicon
+app.get('*favicon.ico*', function (req, res, next) {
+    res.status(204).send('No content. No favicon available.');
+});
+
 // Routing
 app.use('/', router);
 

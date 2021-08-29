@@ -5,7 +5,8 @@ exports.post_url = (req, res) => {
     const url = req.body.url;
     const serverUrl = req.get('Host');
     const shortenUrl = service.postUrl(url, serverUrl);
-    res.status(200).send(shortenUrl);
+    if(shortenUrl) res.status(200).send(shortenUrl);
+    res.status(400).send(`Bad request: url (${serverUrl}) is undefined or not valid.`)
 }
 
 exports.get_url = (req, res) => {
