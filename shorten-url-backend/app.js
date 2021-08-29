@@ -28,5 +28,10 @@ app.get('*favicon.ico*', function (req, res, next) {
 // Routing
 app.use('/', router);
 
+// Error handling and requests without proper URLs
+app.use(function (req, res, next) {
+    res.status(405).send('Method Not Allowed.');
+});
+
 // Start Server
 app.listen(port, () => console.log(`Server listening on port ${port}.`));
